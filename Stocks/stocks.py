@@ -38,7 +38,7 @@ def Main(args):
         return
     #Test validity of start date string
     try:
-        datetime.strptime(args[1], '%Y-%m-%d').timestamp()
+        datetime.strptime(args[1], '%Y/%m/%d').timestamp()
     except Exception as e:
         print(e)
         print('Error parsing date: ' + args[1])
@@ -46,7 +46,7 @@ def Main(args):
         return
     #Test validity of end date string
     try:
-        datetime.strptime(args[2], '%Y-%m-%d').timestamp()
+        datetime.strptime(args[2], '%Y/%m/%d').timestamp()
     except Exception as e:
         print('Error parsing date: ' + args[2])
         PrintUsage()
@@ -100,4 +100,4 @@ def Main(args):
 #Main entry point for the program
 if __name__ == "__main__":
     #Main(sys.argv[1:])
-    p, n = Main(['yahoostock.csv', '2016-11-02', '2016-12-31', 'D'])
+    p, n = Main(['DMP.csv', '2018/01/03', '2018/01/05', 'D'])

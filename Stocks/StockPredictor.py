@@ -27,8 +27,8 @@ from sklearn.model_selection import ShuffleSplit
 #return:        A numpy array of timestamps        
 def DateRange(startDate, endDate, period, weekends = False):
     #The start and end date
-    sd = datetime.strptime(startDate, '%Y-%m-%d')
-    ed = datetime.strptime(endDate, '%Y-%m-%d')
+    sd = datetime.strptime(startDate, '%Y/%m/%d')
+    ed = datetime.strptime(endDate, '%Y/%m/%d')
     #Invalid start and end dates
     if(sd > ed):
         raise ValueError("The start date cannot be later than the end date.")
@@ -82,7 +82,7 @@ def ParseData(path):
     #Convert all date strings to a numeric value
     for i, j in enumerate(dateStr):
         #Date strings are of the form year-month-day
-        D[i] = datetime.strptime(j, '%Y-%m-%d').timestamp()
+        D[i] = datetime.strptime(j, '%Y/%m/%d').timestamp()
     #Add the newly parsed column to the dataframe
     df['Timestamp'] = D
     #Remove any unused columns (axis = 1 specifies fields are columns)
@@ -113,7 +113,7 @@ def PlotData(df, p = None):
     #These will be the tick locations on the x axis
     tickMarks = np.arange(s, e, (e - s) / nTicks)
     #Convert timestamps to strings
-    strTs = [datetime.fromtimestamp(i).strftime('%m-%d-%y') for i in tickMarks]
+    strTs = [datetime.fromtimestamp(i).strftime('%m/%d/%y') for i in tickMarks]
     mpl.figure()
     #Plots of the high and low values for the day
     mpl.plot(ts, df.High.values, color = '#727272', linewidth = 1.618, label = 'Actual')
